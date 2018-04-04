@@ -22,5 +22,5 @@ base_plot %>%
   addPolygons(data = macleish_layers[["buildings"]]) %>%
   addPolylines(data = macleish_layers[["streams"]], weight =1, color="Blue") %>%
   addPolylines(data = macleish_layers[["trails"]], weight =1, color="Brown") %>%
-  addCircleMarkers(data=macleish_layers[["challenge_courses"]])
+  addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", weight=.1)
 ```
