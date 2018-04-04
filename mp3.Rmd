@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
+library(tidyverse)  
 library(tidyverse)
 library(sf)
 library(macleish)
@@ -20,7 +21,8 @@ library(lwgeom)
 
 Christine
 ```{r}
-
+library(sf)
+test
 ```
 
 
@@ -49,7 +51,7 @@ base_plot %>%
 
 Dardalie
 ```{r}
-
+hi
 ```
 
 
