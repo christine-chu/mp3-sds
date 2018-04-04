@@ -11,6 +11,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 library(tidyverse)  
+library(tidyverse)
+library(sf)
+library(macleish)
+library(leaflet)  # HTML widgit, use javascript library D3.js
+library(RSQLite)
+library(lwgeom) 
 ```
 
 Christine
@@ -20,15 +26,31 @@ test
 ```
 
 
+
+
 Emily
 ```{r}
+bechtel <- data.frame(lat = 42.449167, lon = -72.679389)    ### location of the classroom
 
+base_plot <- leaflet() %>%
+  addTiles() %>%
+  addMarkers(lng = ~lon, lat = ~lat, data = bechtel,
+             popup = "Bechtel Environmental Classroom")
+
+base_plot %>%
+  addPolygons(data = macleish_layers[["buildings"]]) %>%
+  addPolylines(data = macleish_layers[["streams"]], weight =1, color="Blue") %>%
+  addPolylines(data = macleish_layers[["trails"]], weight =1, color="Brown") %>%
+  addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", weight=.1)
 ```
+
+
+
 
 
 Dardalie
 ```{r}
-
+hi
 ```
 
 
