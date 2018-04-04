@@ -11,6 +11,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 library(tidyverse)
+library(sf)
+library(macleish)
+library(leaflet)  # HTML widgit, use javascript library D3.js
+library(RSQLite)
+library(lwgeom) 
 ```
 
 Christine
@@ -19,10 +24,15 @@ Christine
 ```
 
 
+
+
 Emily
 ```{r}
 
 ```
+
+
+
 
 
 Dardalie
