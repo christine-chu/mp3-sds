@@ -27,9 +27,7 @@ base_plot <- leaflet() %>%
   addPolylines(data = macleish_layers[["streams"]], weight =1, color="Blue") %>%
   addPolylines(data = macleish_layers[["trails"]], weight =1, color="Brown") %>%
   addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", weight=.1) %>%
-  addPolygons(data = macleish_layers[["research"]]) %>%
-  addMarkers(lng = -72.68068, lat = 42.448, data = macleish_layers,
-             popup = "Parking?")
+  addPolygons(data = macleish_layers[["research"]]) 
 
 base_plot 
 
@@ -44,6 +42,16 @@ lon:  72°40'50.46"W
 
 Christine
 ```{r}
+#area is in meters
+base_plot <- leaflet() %>%
+  addTiles() %>%
+  addPolygons(data = macleish_layers[["buildings"]]) %>%
+  addPolylines(data = macleish_layers[["streams"]], weight =1, color="Blue") %>%
+  addPolylines(data = macleish_layers[["trails"]], weight =1, color="Brown") %>%
+  addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", weight=.1) %>%
+  addPolygons(data = macleish_layers[["research"]]) 
+
+base_plot 
 
 ```
 
