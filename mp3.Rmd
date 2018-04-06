@@ -19,6 +19,24 @@ library(RSQLite)
 library(lwgeom) 
 ```
 
+Emily
+```{r}
+base_plot <- leaflet() %>%
+  addTiles() %>%
+  addPolygons(data = macleish_layers[["buildings"]]) %>%
+  addPolylines(data = macleish_layers[["streams"]], weight =1, color="Blue") %>%
+  addPolylines(data = macleish_layers[["trails"]], weight =1, color="Brown") %>%
+  addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", weight=.1) %>%
+  addPolygons(data = macleish_layers[["research"]]) %>%
+  addPolygons(data = macleish_layers[[""]])
+
+base_plot 
+
+
+```
+
+
+
 Christine
 ```{r}
 
@@ -27,19 +45,7 @@ Christine
 
 
 
-Emily
-```{r}
-base_plot <- leaflet() %>%
-  addTiles() %>%
-  addPolygons(data = macleish_layers[["buildings"]]) %>%
-  addPolylines(data = macleish_layers[["streams"]], weight =1, color="Blue") %>%
-  addPolylines(data = macleish_layers[["trails"]], weight =1, color="Brown") %>%
-  addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", weight=.1)
 
-base_plot 
-
-
-```
 
 
 
