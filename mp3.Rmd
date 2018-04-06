@@ -35,6 +35,10 @@ base_plot
 ```
 
 
+Parking lot (in theory is at this location, so we could ad a thumb tack then put in a centrioid/buffer for intersection purposes:
+lat:   42°26'52.81"N
+lon:  72°40'50.46"W
+
 
 Christine
 ```{r}
