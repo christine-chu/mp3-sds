@@ -37,7 +37,11 @@ base_plot <- leaflet() %>%
   addPolylines(data = macleish_layers[["trails"]], weight =1, color="Brown") %>%
   addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", weight=.1) 
 
-base_plot
+base_plot %>%
+  addPolygons(macleish_layers[["streams"]] %>%
+                          st_transform(4326) %>%
+                          st_buffer())
+
 ```
 
 
