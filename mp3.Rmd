@@ -21,8 +21,7 @@ library(lwgeom)
 
 Christine
 ```{r}
-library(sf)
-test
+
 ```
 
 
@@ -42,6 +41,10 @@ base_plot %>%
   addPolylines(data = macleish_layers[["streams"]], weight =1, color="Blue") %>%
   addPolylines(data = macleish_layers[["trails"]], weight =1, color="Brown") %>%
   addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", weight=.1)
+
+
+
+
 ```
 
 
