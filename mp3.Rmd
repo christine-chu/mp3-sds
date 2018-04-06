@@ -30,8 +30,6 @@ test
 
 Emily
 ```{r}
-bechtel <- data.frame(lat = 42.449167, lon = -72.679389)    ### location of the classroom
-
 base_plot <- leaflet() %>%
   addTiles() %>%
   addPolygons(data = macleish_layers[["buildings"]]) %>%
