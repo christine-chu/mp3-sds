@@ -92,6 +92,16 @@ research_buff <- leaflet() %>%
 
 base_plot %>%
   addPolygons(data=research_buff)
+
+
+#something form online about creating a negative space for buffer
+b <- gBuffer(p, width=1000, quadsegs=100)
+plot(p)
+  plot(b,add=TRUE)  
+
+e <- erase(b, p)                             # using raster:erase
+e <- rgeos::gDifference(b, p, byid=TRUE)     # using rgeos:gDifference
+  plot(e, col="red")   
 ```
 
 
