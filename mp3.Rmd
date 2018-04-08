@@ -48,6 +48,7 @@ stream_buff <- leaflet() %>%
 
 ```{r}
 base_plot %>%
+  addPolygons(data=stream_buff)
   ####some kind of overlay function 
 ```
 
