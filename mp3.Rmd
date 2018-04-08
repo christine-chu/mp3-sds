@@ -32,8 +32,23 @@ base_plot <- leaflet() %>%
              popup = "Parking?") 
 
 base_plot 
+```
 
+```{r}
+stream_buffer <- macleish_layers[["streams"]] %>%
+  st_transform(proj4_aea) %>%
+  st_buffer(dist=10) %>%
+  st_transform(4326)
 
+stream_buff <- leaflet() %>%
+  addTiles() %>%
+  addPolylines(data=macleish_layers[["streams"]], weight=1, color="black") %>%
+  addPolygons(data = stream_buffer)
+```
+
+```{r}
+base_plot %>%
+  ####some kind of overlay function 
 ```
 
 
