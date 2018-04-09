@@ -28,29 +28,12 @@ base_plot <- leaflet() %>%
   addPolylines(data = macleish_layers[["trails"]], weight =1, color="Brown") %>%
   addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", weight=.1) %>%
   addPolygons(data = macleish_layers[["research"]]) %>%
-  addMarkers(lng = -72.68068, lat = 42.448, data = macleish_layers,
+  addMarkers(lng = -72.680, lat = 42.448, data = macleish_layers,
              popup = "Parking?") 
 
 base_plot 
 ```
 
-```{r}
-stream_buffer <- macleish_layers[["streams"]] %>%
-  st_transform(proj4_aea) %>%
-  st_buffer(dist=10) %>%
-  st_transform(4326)
-
-stream_buff <- leaflet() %>%
-  addTiles() %>%
-  addPolylines(data=macleish_layers[["streams"]], weight=1, color="black") %>%
-  addPolygons(data = stream_buffer)
-```
-
-```{r}
-base_plot %>%
-  addPolygons(data=stream_buff)
-  ####some kind of overlay function 
-```
 
 
 Parking lot (in theory is at this location, so we could ad a thumb tack then put in a centrioid/buffer for intersection purposes:
