@@ -21,7 +21,7 @@ library(lwgeom)
 
 Emily
 ```{r}
-forest_pal <- colorFactor("Pastel1",macleish_layers[["forests"]]$Sheet1__Na)
+forest_pal <- colorFactor("Set1",macleish_layers[["forests"]]$Sheet1__Na)
 
 base_plot <- leaflet() %>%
   addTiles() %>%
