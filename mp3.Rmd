@@ -32,7 +32,7 @@ base_plot <- leaflet() %>%
   addPolygons(data = macleish_layers[["research"]]) %>%
   addPolygons(data = macleish_layers[["forests"]], 
               color = ~forest_pal(Sheet1__Na), weight = 0.1, 
-              fillOpacity = 0.2,
+              fillOpacity = 1,
               popup = ~ Sheet1__Na, group = "Natural") %>%
   addMarkers(lng = -72.680, lat = 42.448, data = macleish_layers,
              popup = "Parking?") 
