@@ -22,6 +22,8 @@ library(lwgeom)
 
 Emily
 ```{r}
+forest_pal <- colorFactor("Set1",macleish_layers[["forests"]]$Sheet1__Na)
+
 base_plot <- leaflet() %>%
   addTiles() %>%
   addPolygons(data = macleish_layers[["buildings"]]) %>%
@@ -29,14 +31,20 @@ base_plot <- leaflet() %>%
   addPolylines(data = macleish_layers[["trails"]], weight =1, color="Brown") %>%
   addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", weight=.1) %>%
   addPolygons(data = macleish_layers[["research"]]) %>%
-  addMarkers(lng = -72.68068, lat = 42.448, data = macleish_layers,
+  addPolygons(data = macleish_layers[["forests"]], 
+              color = ~forest_pal(Sheet1__Na), weight = 0.1, 
+              fillOpacity = 0.2,
+              popup = ~ Sheet1__Na, group = "Natural") %>%
+  addMarkers(lng = -72.680, lat = 42.448, data = macleish_layers,
              popup = "Parking?") 
 
 base_plot 
 ```
 
 
+
 within 200’ of a stream or other source of water
+
 ```{r}
 proj4_aea <- "+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs"
 
@@ -53,6 +61,7 @@ stream_buff <- leaflet() %>%
 
 
 
+
 ```{r}
 base_plot %>%
   addPolygons(data=stream_buff)
@@ -60,9 +69,15 @@ base_plot %>%
 ```
 
 
+
 Parking lot (in theory is at this location, so we could ad a thumb tack then put in a centrioid/buffer for intersection purposes:
 lat:   42°26'52.81"N
 lon:  72°40'50.46"W
+
+Camping sites:  
+
+Group Campsite (42.450976, -72.678154)
+Remote Campite (42.458570, -72.674732)
 
 
 Christine
