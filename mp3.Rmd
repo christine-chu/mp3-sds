@@ -21,6 +21,8 @@ library(lwgeom)
 
 Emily
 ```{r}
+forest_pal <- colorFactor("Set1",macleish_layers[["forests"]]$Sheet1__Na)
+
 base_plot <- leaflet() %>%
   addTiles() %>%
   addPolygons(data = macleish_layers[["buildings"]]) %>%
@@ -28,6 +30,10 @@ base_plot <- leaflet() %>%
   addPolylines(data = macleish_layers[["trails"]], weight =1, color="Brown") %>%
   addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", weight=.1) %>%
   addPolygons(data = macleish_layers[["research"]]) %>%
+  addPolygons(data = macleish_layers[["forests"]], 
+              color = ~forest_pal(Sheet1__Na), weight = 0.1, 
+              fillOpacity = 0.2,
+              popup = ~ Sheet1__Na, group = "Natural") %>%
   addMarkers(lng = -72.680, lat = 42.448, data = macleish_layers,
              popup = "Parking?") 
 
