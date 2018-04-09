@@ -35,6 +35,8 @@ base_plot <- leaflet() %>%
   addMarkers(lng = ~lon, lat = ~lat, data = bechtel,
              popup = "Bechtel Environmental Classroom")
 
+base_plot
+
 base_plot %>%
   addPolygons(data = macleish_layers[["buildings"]]) %>%
   addPolylines(data = macleish_layers[["streams"]], weight =1, color="Blue") %>%
@@ -48,7 +50,7 @@ base_plot %>%
 
 Dardalie
 ```{r}
-fasfuuh fa
+
 ```
 
 
