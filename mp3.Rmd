@@ -34,7 +34,7 @@ base_plot <- leaflet() %>%
 base_plot 
 ```
 
-
+ 
 ```{r}
 stream_buffer <- macleish_layers[["streams"]] %>%
   st_transform(proj4_aea) %>%
@@ -118,7 +118,7 @@ hi
 ```
 
 
-
+ 
 
 
 
