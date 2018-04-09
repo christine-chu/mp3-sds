@@ -85,23 +85,15 @@ research_buffer <- macleish_layers[["research"]] %>%
   st_buffer(dist= 152) %>%
   st_transform(4326)
 
-research_buff <- leaflet() %>%
+#plotting the research buffers 
+
+leaflet() %>%
   addTiles() %>%
+  addPolylines(data=macleish_layers[["streams"]], weight=1, color="black") %>%
+  addPolygons(data = stream_buffer) %>%
   addPolygons(data=macleish_layers[["research"]], weight=1, color="red") %>%
   addPolygons(data = research_buffer)
 
-base_plot %>%
-  addPolygons(data=research_buff)
-
-
-#something form online about creating a negative space for buffer
-b <- gBuffer(p, width=1000, quadsegs=100)
-plot(p)
-  plot(b,add=TRUE)  
-
-e <- erase(b, p)                             # using raster:erase
-e <- rgeos::gDifference(b, p, byid=TRUE)     # using rgeos:gDifference
-  plot(e, col="red")   
 ```
 
 
