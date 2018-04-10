@@ -135,6 +135,16 @@ leaflet() %>%
 ```
 
 
+Challenge Buffer
+```{r}
+challenge_buffer <- macleish_layers[["challenge_courses"]] %>%
+  st_transform(proj4_aea) %>%
+  st_buffer(dist= 152) %>%
+  st_transform(4326)
+```
+  addPolygons(data = challenge_buffer)
+
+
 Working on making intersections for polygons 
 ```{r}
 stream_without_research_intersect <- stream_buffer %>%
