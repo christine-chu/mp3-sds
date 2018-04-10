@@ -135,6 +135,24 @@ leaflet() %>%
 ```
 
 
+Working on making intersections for polygons 
+```{r}
+stream_without_research_intersect <- stream_buffer %>%
+  st_difference(research_buffer)
+
+
+
+leaflet()%>%
+  addTiles %>%
+  addPolygons(data=stream_without_research_intersect)
+
+
+```
+
+
+
+
+
 
 
 Dardalie
