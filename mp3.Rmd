@@ -25,6 +25,8 @@ For this assignment, our group elected to find a location for a new campsite wit
 * atleast 500' from research builidings or the challenge course 
 * a site that is relativly flat. 
 
+To find locations that fufilled these requirnments, we relied on a vendiagram-esqu approach.  We used the st_buffer() function to create a polygon that showed the area 200' feet from a stream or other water source, and a polygon that showed 500' feet from research buldings and challenge course.
+
 
 
 Emily
