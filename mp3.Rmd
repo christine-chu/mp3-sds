@@ -75,13 +75,6 @@ stream_buff <- leaflet() %>%
 
 
 
-```{r}
-base_plot %>%
-  addPolygons(data=stream_buff)
-  ####some kind of overlay function 
-```
-
-
 
 Parking lot (in theory is at this location, so we could ad a thumb tack then put in a centrioid/buffer for intersection purposes:
 lat:   42°26'52.81"N
