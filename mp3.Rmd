@@ -47,15 +47,6 @@ base_plot
 ```
 
 
- 
-
-Camping sites:  
-
-Group Campsite (42.450976, -72.678154)
-Remote Campite (42.458570, -72.674732)
-
-
-
 within 200’ of a stream or other source of water
 
 ```{r}
@@ -71,7 +62,6 @@ stream_buff <- leaflet() %>%
   addPolylines(data=macleish_layers[["streams"]], weight=1, color="black") %>%
   addPolygons(data = stream_buffer)
 ```
-
 
 
 
@@ -165,6 +155,7 @@ leaflet()%>%
   addPolygons(data=stream_without_research_intersect)
 
 
+
 base_plot %>%
   addPolygons(data=stream_without_research_intersect) %>%
   addCircles(lng = -72.68068, lat = 42.448, data=macleish_layers, color="Green", weight=.5, radius=804)
@@ -173,9 +164,29 @@ base_plot %>%
 
 
 
+ 
+
+
+
+Dardalie
+
+Group Campsite (42.450976, -72.678154)
+Remote Campite (42.458570, -72.674732)
+
+in forest that is unlike the forest in the two other campsites
+```{r}
+
+a <- macleish_layers[["forests"]]
+
+
+```
+
+
+
 Final Plot
 ```{r}
-leaflet() %>% 
+leaflet() %>%
+   addTiles() %>%
 addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", weight=.1) %>%
   addPolygons(data = macleish_layers[["research"]]) %>%
   addPolygons(data = macleish_layers[["forests"]], 
