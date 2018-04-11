@@ -1,14 +1,11 @@
 ---
-title: "mp3"
+title: "Mini-Project 3, Problem 3"
 author: "Christine Chu"
-date: "April 4, 2018"
-output: html_document
+date: "Due April ___, 2018"
+output: 
+  html_document:
+    code_folding: hide
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 
 ```{r}
 library(tidyverse)  
@@ -18,8 +15,16 @@ library(macleish)
 library(leaflet)  # HTML widgit, use javascript library D3.js
 library(RSQLite)
 library(lwgeom) 
-library(pals) # color palette for many colors?
 ```
+
+###Problem 3: 
+For this assignment, our group elected to find a location for a new campsite with the following features: 
+
+* .5 miles from the parking area
+* within 200 feet from a stream or other water source 
+* atleast 500' from research builidings or the challenge course 
+* a site that is relativly flat. 
+
 
 
 Emily
