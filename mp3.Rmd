@@ -71,6 +71,7 @@ stream_buff <- leaflet() %>%
   addTiles() %>%
   addPolylines(data=macleish_layers[["streams"]], weight=1, color="black") %>%
   addPolygons(data = stream_buffer)
+
 ```
 
 
@@ -168,7 +169,7 @@ base_plot %>%
 
 
 
-Final Plot
+#####Final Plot
 ```{r}
 
 contour <- macleish_layers[["contours_3m"]]
@@ -176,22 +177,33 @@ contour <- macleish_layers[["contours_3m"]]
 m <- leaflet() %>% 
 leaflet() %>%
    addTiles() %>%
+  addPolygons(data = macleish_layers[["buildings"]]) %>%
+  addPolylines(data = macleish_layers[["streams"]], weight =1, color="Blue") %>%
+  addPolylines(data = macleish_layers[["trails"]], weight =1, color="Brown") %>%
 addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", weight=.1) %>%
   addPolygons(data = macleish_layers[["research"]]) %>%
   addPolygons(data = macleish_layers[["forests"]], 
               color = ~forest_pal(Sheet1__Na), weight = 0.1, 
               fillOpacity = 1,
               popup = ~ Sheet1__Na, group = "Natural") %>%
-  addMarkers(lng = -72.678154, lat = 42.450976, data = macleish_layers,
-             popup = "Group Camp") %>% 
   addMarkers(lng = -72.674732, lat = 42.458570, data = macleish_layers,
              popup = "Remote Camp") %>% 
+   addMarkers(lng = -72.678154, lat = 42.450976, data = macleish_layers,
+             popup = "Group Camp") %>% 
+  addMarkers(lng = -72.67920, lat = 42.450130, data = macleish_layers,
+             popup = "Aquatic campsite") %>% 
+  addMarkers(lng = -72.67490, lat = 42.447900, data = macleish_layers,
+             popup = "Wildlife campsite") %>%
   addPolygons(data=stream_without_research_intersect) %>% 
    addCircles(lng = -72.68068, lat = 42.448, data=macleish_layers, color="Green", weight=.5, radius=804) %>% 
-  addPolylines(data=contour, color="black", weight=0.5)
-
+  addPolylines(data=contour, color="black", weight=0.5) %>% 
+  addMarkers(lng = -72.678154, lat = 42.450776, data = macleish_layers,
+             popup = "Group Camp") %>% 
+  addMarkers(lng = -72.674732, lat = 42.458570, data = macleish_layers,
+             popup = "Remote Camp") 
 
 m
+
 
 
 ```
