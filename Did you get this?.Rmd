@@ -16,7 +16,6 @@ library(leaflet)  # HTML widgit, use javascript library D3.js
 library(RSQLite)
 library(lwgeom) 
 library(raster)
-
 ```
 
 ###Problem 3: 
@@ -57,7 +56,7 @@ base_plot <- leaflet() %>%
 base_plot 
 ```
 
- 
+
 within 200’ of a stream or other source of water
 
 
