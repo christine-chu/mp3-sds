@@ -29,6 +29,8 @@ Camping is a great way to build relationships between Smithies, whether it be in
 * Needed to be within .5 miles of the Macleish Parking Lot 
 * Must exist within 200 feet of a water source 
 * Could not exist within 500 feet of a research area or challenge course
+* The camp site must exist in a different vegitation setting than the current campsites 
+
 
 
 Production of a Basic Map of Macleish 
