@@ -1,0 +1,192 @@
+---
+title: "Mini-Project 3, Problem 3"
+author: "Christine Chu"
+date: "Due April 15, 2018"
+output: 
+  html_document:
+    code_folding: hide
+---
+
+```{r}
+library(tidyverse)  
+library(tidyverse)
+library(sf)
+library(macleish)
+library(leaflet)  # HTML widgit, use javascript library D3.js
+library(RSQLite)
+library(lwgeom) 
+library(raster)
+```
+
+### Problem Statement: 
+Camping is a great way to build relationships between Smithies, whether it be in a house community or in a friend group. Currently there are only two campsites, that offer opportunities to interact with wilderness and the environment. But what if there were more campsites with totally different forest features and wildlife for Smithies to stay overnight at? We think that an additional two campsites that are relatively accessible by foot would make a great contribution to the Smith outdoor experience. 
+
+
+### Parameters of an Excellent Campsite unlike the rest:
+
+* Must be on relativly flat ground
+* Needed to be within .5 miles of the Macleish Parking Lot 
+* Must exist within 200 feet of a water source 
+* Could not exist within 500 feet of a research area or challenge course
+* The camp site must exist in a different vegitation setting than the current campsites 
+
+
+
+Production of a Basic Map of Macleish 
+```{r}
+forest_pal <- colorFactor("Set1",macleish_layers[["forests"]]$Sheet1__Na)
+
+base_plot <- leaflet() %>%
+  addTiles() %>%
+  addPolygons(data = macleish_layers[["buildings"]]) %>%
+  addPolylines(data = macleish_layers[["streams"]], weight =1, color="Blue") %>%
+  addPolylines(data = macleish_layers[["trails"]], weight =1, color="Brown") %>%
+  addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", weight=.1) %>%
+  addPolygons(data = macleish_layers[["research"]]) %>%
+  addPolygons(data = macleish_layers[["forests"]], 
+              color = ~forest_pal(Sheet1__Na), weight = 0.1, 
+              fillOpacity = 1,
+              popup = ~ Sheet1__Na, group = "Natural") %>%
+  addMarkers(lng = -72.680, lat = 42.448, data = macleish_layers,
+             popup = "Parking?") %>% 
+  addMarkers(lng = -72.678154, lat = 42.450976, data = macleish_layers,
+             popup = "Group Camp") %>% 
+  addMarkers(lng = -72.674732, lat = 42.458570, data = macleish_layers,
+             popup = "Remote Camp") 
+
+base_plot 
+```
+
+
+within 200’ of a stream or other source of water
+
+
+For conversion reference? 
+```{r}
+proj4_aea <- "+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs"
+```
+
+
+at least 500’ from any research area or any element of the Challenge Course.
+```{r}
+
+
+#plotting the research buffers 
+
+leaflet() %>%
+  addTiles() %>%
+  addPolylines(data=macleish_layers[["streams"]], weight=1, color="black") %>%
+  addPolygons(data = stream_buffer) %>%
+  addPolygons(data=macleish_layers[["research"]], weight=1, color="red") %>%
+  addPolygons(data = research_buffer) %>% 
+  addCircleMarkers(data=macleish_layers[["challenge_courses"]], weight=1, color="black") %>% 
+  addPolygons(data = challenge_buffer)
+
+
+```
+
+
+Creation of Buffers
+```{r}
+challenge_buffer <- macleish_layers[["challenge_courses"]] %>%
+  st_transform(proj4_aea) %>%
+  st_buffer(dist= 152) %>%
+  st_transform(4326)
+
+research_buffer <- macleish_layers[["research"]] %>%
+  st_transform(proj4_aea) %>%
+  st_buffer(dist= 152) %>%
+  st_transform(4326)
+
+stream_buffer <- macleish_layers[["streams"]] %>%
+  st_transform(proj4_aea) %>%
+  st_buffer(dist=10) %>%
+  st_transform(4326)
+```
+  addPolygons(data = challenge_buffer)
+
+
+Working on making intersections for polygons 
+```{r}
+stream_without_research_intersect <- stream_buffer %>%
+  st_difference(research_buffer)
+
+leaflet()%>%
+  addTiles %>%
+  addPolygons(data=stream_without_research_intersect)
+
+
+
+base_plot %>%
+  addPolygons(data=stream_without_research_intersect) %>%
+  addCircles(lng = -72.68068, lat = 42.448, data=macleish_layers, color="Green", weight=.5, radius=804)
+
+```
+
+```{r}
+tent_marker <- makeIcon(
+  iconUrl = "https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Summer-Vacation-PNG/Green_Tent_PNG_Clipart_Picture.png?m=1507172108",
+  iconWidth = 38, iconHeight = 35,
+  iconAnchorX = 0, iconAnchorY = 0)
+```
+
+
+#####Final Plot
+```{r}
+
+contour <- macleish_layers[["contours_3m"]]
+
+m <- leaflet() %>% 
+leaflet() %>%
+   addTiles() %>%
+  addPolygons(data = macleish_layers[["buildings"]]) %>%
+  addPolylines(data = macleish_layers[["streams"]], weight =1, color="Blue") %>%
+  addPolylines(data = macleish_layers[["trails"]], weight =1, color="Brown") %>%
+addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", weight=.1) %>%
+  addPolygons(data = macleish_layers[["research"]]) %>%
+  addPolygons(data = macleish_layers[["forests"]], 
+              color = ~forest_pal(Sheet1__Na), weight = 0.1, 
+              fillOpacity = 1,
+              popup = ~ Sheet1__Na, group = "Natural") %>%
+  addMarkers(lng = -72.674732, lat = 42.458570, data = macleish_layers,
+             popup = "Remote Camp", icon = tent_marker) %>% 
+   addMarkers(lng = -72.678154, lat = 42.450976, data = macleish_layers,
+             popup = "Group Camp", icon = tent_marker) %>% 
+  addMarkers(lng = -72.67984, lat = 42.450130, data = macleish_layers,  #### Unique option 1
+             popup = "Aquatic campsite", icon = tent_marker) %>% 
+  addMarkers(lng = -72.6744, lat = 42.447900, data = macleish_layers, #### unique option 2
+             popup = "Wildlife campsite", icon = tent_marker) %>%
+  addPolygons(data=stream_without_research_intersect) %>% 
+   addCircles(lng = -72.68068, lat = 42.448, data=macleish_layers, color="Green", weight=.5, radius=804) %>% 
+  addPolylines(data=contour, color="black", weight=0.5) 
+
+m
+
+
+
+```
+
+
+Next Steps:
+
+Write Description of Plot and why we chose what we did.............
+
+1. Import data for land flatness ___ pick something flat
+2. doesn't have same tree type as other campsites
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
