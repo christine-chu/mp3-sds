@@ -22,9 +22,12 @@ library(raster)
 Camping is a great way to build relationships between Smithies, whether it be in a house community or in a friend group. Currently there are only two campsites, that offer opportunities to interact with wilderness and the environment. But what if there were more campsites with totally different forest features and wildlife for Smithies to stay overnight at? We think that an additional two campsites that are relatively accessible by foot would make a great contribution to the Smith outdoor experience. 
 
 
-To find locations that fufilled these requirnments, we relied on a vendiagram-esqu approach.  We used the st_buffer() function to create a polygon that showed the area 200' feet from a stream or other water source, and a polygon that showed 500' feet from research buldings. We then used st_difference to remove the sections of where the research buldings overlapped the streams.  
+### Parameters of an Excellent Campsite unlike the rest:
 
-
+* Must be on relativly flat ground
+* Needed to be within .5 miles of the Macleish Parking Lot 
+* Must exist within 200 feet of a water source 
+* Could not exist within 500 feet of a research area or challenge course
 
 
 Production of a Basic Map of Macleish 
