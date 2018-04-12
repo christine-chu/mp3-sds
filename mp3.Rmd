@@ -1,14 +1,11 @@
 ---
-title: "mp3"
+title: "Mini-Project 3, Problem 3"
 author: "Christine Chu"
-date: "April 4, 2018"
-output: html_document
+date: "Due April ___, 2018"
+output: 
+  html_document:
+    code_folding: hide
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 
 ```{r}
 library(tidyverse)  
@@ -18,8 +15,21 @@ library(macleish)
 library(leaflet)  # HTML widgit, use javascript library D3.js
 library(RSQLite)
 library(lwgeom) 
+library(raster)
 
 ```
+
+###Problem 3: 
+For this assignment, our group elected to find a location for a new campsite with the following features: 
+
+* .5 miles from the parking area
+* within 200 feet from a stream or other water source 
+* atleast 500' from research builidings or the challenge course 
+* a site that is relativly flat. 
+
+To find locations that fufilled these requirnments, we relied on a vendiagram-esqu approach.  We used the st_buffer() function to create a polygon that showed the area 200' feet from a stream or other water source, and a polygon that showed 500' feet from research buldings. We then used st_difference to remove the sections of where the research buldings overlapped the streams.  
+
+
 
 
 Emily
@@ -47,7 +57,7 @@ base_plot <- leaflet() %>%
 base_plot 
 ```
 
-
+ 
 within 200’ of a stream or other source of water
 
 ```{r}
@@ -165,27 +175,13 @@ base_plot %>%
 
 
 
- 
-
-
-
-Dardalie
-
-Group Campsite (42.450976, -72.678154)
-Remote Campite (42.458570, -72.674732)
-
-in forest that is unlike the forest in the two other campsites
-```{r}
-
-a <- macleish_layers[["forests"]]
-
-
-```
-
-
 
 Final Plot
 ```{r}
+
+contour <- macleish_layers[["contours_3m"]]
+
+m <- leaflet() %>% 
 leaflet() %>%
    addTiles() %>%
 addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", weight=.1) %>%
@@ -199,8 +195,12 @@ addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", wei
   addMarkers(lng = -72.674732, lat = 42.458570, data = macleish_layers,
              popup = "Remote Camp") %>% 
   addPolygons(data=stream_without_research_intersect) %>% 
-   addCircles(lng = -72.68068, lat = 42.448, data=macleish_layers, color="Green", weight=.5, radius=804) 
-  
+   addCircles(lng = -72.68068, lat = 42.448, data=macleish_layers, color="Green", weight=.5, radius=804) %>% 
+  addPolylines(data=contour, color="black", weight=0.5)
+
+
+m
+
 
 ```
 
@@ -209,7 +209,7 @@ Next Steps:
 
 Write Description of Plot and why we chose what we did.............
 
-1. Import data for lad flatness ___ pick something flat
+1. Import data for land flatness ___ pick something flat
 2. doesn't have same tree type as other campsites
 
 
