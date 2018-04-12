@@ -18,20 +18,16 @@ library(lwgeom)
 library(raster)
 ```
 
-###Problem 3: 
-For this assignment, our group elected to find a location for a new campsite with the following features: 
+### Problem Statement: 
+Camping is a great way to build relationships between Smithies, whether it be in a house community or in a friend group. Currently there are only two campsites, that offer opportunities to interact with wilderness and the environment. But what if there were more campsites with totally different forest features and wildlife for Smithies to stay overnight at? We think that an additional two campsites that are relatively accessible by foot would make a great contribution to the Smith outdoor experience. 
 
-* .5 miles from the parking area
-* within 200 feet from a stream or other water source 
-* atleast 500' from research builidings or the challenge course 
-* a site that is relativly flat. 
 
 To find locations that fufilled these requirnments, we relied on a vendiagram-esqu approach.  We used the st_buffer() function to create a polygon that showed the area 200' feet from a stream or other water source, and a polygon that showed 500' feet from research buldings. We then used st_difference to remove the sections of where the research buldings overlapped the streams.  
 
 
 
 
-Emily
+Production of a Basic Map of Macleish 
 ```{r}
 forest_pal <- colorFactor("Set1",macleish_layers[["forests"]]$Sheet1__Na)
 
