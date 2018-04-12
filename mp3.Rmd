@@ -15,7 +15,7 @@ library(macleish)
 library(leaflet)  # HTML widgit, use javascript library D3.js
 library(RSQLite)
 library(lwgeom) 
-library(raster)
+library(raster) 
 
 ```
 
