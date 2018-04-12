@@ -19,6 +19,8 @@ library(raster)
 
 ```
 
+hello
+
 ### Problem Statement: 
 Camping is a great way to build relationships between Smithies, whether it be in a house community or in a friend group. Currently there are only two campsites, that offer opportunities to interact with wilderness and the environment. But what if there were more campsites with totally different forest features and wildlife for Smithies to stay overnight at? We think that an additional two campsites that are relatively accessible by foot would make a great contribution to the Smith outdoor experience. 
 
