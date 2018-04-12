@@ -1,7 +1,7 @@
 ---
 title: "Mini-Project 3, Problem 3"
 author: "Christine Chu"
-date: "Due April ___, 2018"
+date: "Due April 15, 2018"
 output: 
   html_document:
     code_folding: hide
@@ -59,70 +59,16 @@ base_plot
 
 within 200’ of a stream or other source of water
 
+
+For conversion reference? 
 ```{r}
 proj4_aea <- "+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs"
-
-stream_buffer <- macleish_layers[["streams"]] %>%
-  st_transform(proj4_aea) %>%
-  st_buffer(dist=10) %>%
-  st_transform(4326)
-
-stream_buff <- leaflet() %>%
-  addTiles() %>%
-  addPolylines(data=macleish_layers[["streams"]], weight=1, color="black") %>%
-  addPolygons(data = stream_buffer)
-
 ```
-
-
-
-
-Parking lot (in theory is at this location, so we could ad a thumb tack then put in a centrioid/buffer for intersection purposes:
-lat:   42°26'52.81"N
-lon:  72°40'50.46"W
-
-
-
-
-Christine
-```{r}
-
-proj4_aea <- "+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs"
-
-#area is in meters
-base_plot <- leaflet() %>%
-  addTiles() %>%
-  addMarkers(lng = ~lon, lat = ~lat, data = bechtel,
-             popup = "Bechtel Environmental Classroom")
-
-base_plot
-
-base_plot %>%
-  addPolygons(data = macleish_layers[["buildings"]]) %>%
-  addPolylines(data = macleish_layers[["streams"]], weight =1, color="Blue") %>%
-  addPolylines(data = macleish_layers[["trails"]], weight =1, color="Brown") %>%
-  addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", weight=.1) %>% 
-  addPolygons(data = macleish_layers[["research"]]) %>%
-  addMarkers(lng = -72.68068, lat = 42.448, data = macleish_layers,
-             popup = "Parking?")
-
-base_plot 
-
-```
-
 
 
 at least 500’ from any research area or any element of the Challenge Course.
 ```{r}
-research_buffer <- macleish_layers[["research"]] %>%
-  st_transform(proj4_aea) %>%
-  st_buffer(dist= 152) %>%
-  st_transform(4326)
 
-challenge_buffer <- macleish_layers[["challenge_courses"]] %>%
-  st_transform(proj4_aea) %>%
-  st_buffer(dist= 152) %>%
-  st_transform(4326)
 
 #plotting the research buffers 
 
@@ -139,11 +85,21 @@ leaflet() %>%
 ```
 
 
-Challenge Buffer
+Creation of Buffers
 ```{r}
 challenge_buffer <- macleish_layers[["challenge_courses"]] %>%
   st_transform(proj4_aea) %>%
   st_buffer(dist= 152) %>%
+  st_transform(4326)
+
+research_buffer <- macleish_layers[["research"]] %>%
+  st_transform(proj4_aea) %>%
+  st_buffer(dist= 152) %>%
+  st_transform(4326)
+
+stream_buffer <- macleish_layers[["streams"]] %>%
+  st_transform(proj4_aea) %>%
+  st_buffer(dist=10) %>%
   st_transform(4326)
 ```
   addPolygons(data = challenge_buffer)
