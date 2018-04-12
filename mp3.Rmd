@@ -153,6 +153,7 @@ addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", wei
              popup = "Remote Camp", icon = tent_marker) %>% 
    addMarkers(lng = -72.678154, lat = 42.450976, data = macleish_layers,
 <<<<<<< HEAD
+<<<<<<< HEAD
              popup = "Group Camp") %>% 
   addMarkers(lng = -72.67850, lat = 42.450130, data = macleish_layers,
              popup = "Aquatic campsite") %>% 
@@ -160,6 +161,8 @@ addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", wei
              popup = "Wildlife campsite") %>%
 =======
 >>>>>>> origin/master
+=======
+>>>>>>> d2e64499709f2ad007b82abb718e9a576f82577f
              popup = "Group Camp", icon = tent_marker) %>% 
   addMarkers(lng = -72.67984, lat = 42.450130, data = macleish_layers,  #### Unique option 1
              popup = "Aquatic campsite", icon = tent_marker) %>% 
