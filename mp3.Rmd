@@ -71,8 +71,6 @@ proj4_aea <- "+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y
 
 at least 500’ from any research area or any element of the Challenge Course.
 ```{r}
-
-
 #plotting the research buffers 
 
 leaflet() %>%
@@ -83,8 +81,6 @@ leaflet() %>%
   addPolygons(data = research_buffer) %>% 
   addCircleMarkers(data=macleish_layers[["challenge_courses"]], weight=1, color="black") %>% 
   addPolygons(data = challenge_buffer)
-
-
 ```
 
 
@@ -105,8 +101,7 @@ stream_buffer <- macleish_layers[["streams"]] %>%
   st_buffer(dist=10) %>%
   st_transform(4326)
 ```
-  addPolygons(data = challenge_buffer)
-
+ 
 
 Working on making intersections for polygons 
 ```{r}
@@ -139,7 +134,6 @@ tent_marker <- makeIcon(
 contour <- macleish_layers[["contours_3m"]]
 
 m <- leaflet() %>% 
-leaflet() %>%
   addTiles() %>%
   addPolygons(data = macleish_layers[["buildings"]]) %>%
   addPolylines(data = macleish_layers[["streams"]], weight =1, color="Blue") %>%
@@ -160,7 +154,12 @@ addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", wei
              popup = "Wildlife campsite", icon = tent_marker) %>%
   addPolygons(data=stream_without_research_intersect) %>% 
    addCircles(lng = -72.68068, lat = 42.448, data=macleish_layers, color="Green", weight=.5, radius=804) %>%  
-  addPolylines(data=contour, color="black", weight=0.5) 
+  addPolylines(data=contour, color="black", weight=0.5) %>%
+  
+    addLegend("bottomright", pal = forest_pal, values = ~Sheet1__Na,
+    title = "Forest Types",
+    opacity = 1
+  )
 
 m
 
