@@ -19,7 +19,6 @@ library(raster)
 
 ```
 
-hello
 
 ### Problem Statement: 
 Camping is a great way to build relationships between Smithies, whether it be in a house community or in a friend group. Currently there are only two campsites, that offer opportunities to interact with wilderness and the environment. But what if there were more campsites with totally different forest features and wildlife for Smithies to stay overnight at? We think that an additional two campsites that are relatively accessible by foot would make a great contribution to the Smith outdoor experience. 
@@ -141,7 +140,7 @@ contour <- macleish_layers[["contours_3m"]]
 
 m <- leaflet() %>% 
 leaflet() %>%
-   addTiles() %>%
+  addTiles() %>%
   addPolygons(data = macleish_layers[["buildings"]]) %>%
   addPolylines(data = macleish_layers[["streams"]], weight =1, color="Blue") %>%
   addPolylines(data = macleish_layers[["trails"]], weight =1, color="Brown") %>%
@@ -154,29 +153,14 @@ addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", wei
   addMarkers(lng = -72.674732, lat = 42.458570, data = macleish_layers,
              popup = "Remote Camp", icon = tent_marker) %>% 
    addMarkers(lng = -72.678154, lat = 42.450976, data = macleish_layers,
-<<<<<<< HEAD
-<<<<<<< HEAD
-             popup = "Group Camp") %>% 
-  addMarkers(lng = -72.67850, lat = 42.450130, data = macleish_layers,
-             popup = "Aquatic campsite") %>% 
-  addMarkers(lng = -72.67490, lat = 42.447900, data = macleish_layers,
-             popup = "Wildlife campsite") %>%
-=======
->>>>>>> origin/master
-=======
->>>>>>> d2e64499709f2ad007b82abb718e9a576f82577f
-             popup = "Group Camp", icon = tent_marker) %>% 
+             popup = "Group Camp", icon = tent_marker) %>%
   addMarkers(lng = -72.67984, lat = 42.450130, data = macleish_layers,  #### Unique option 1
              popup = "Aquatic campsite", icon = tent_marker) %>% 
   addMarkers(lng = -72.6744, lat = 42.447900, data = macleish_layers, #### unique option 2
              popup = "Wildlife campsite", icon = tent_marker) %>%
   addPolygons(data=stream_without_research_intersect) %>% 
    addCircles(lng = -72.68068, lat = 42.448, data=macleish_layers, color="Green", weight=.5, radius=804) %>%  
-  addPolylines(data=contour, color="black", weight=0.5) %>% 
-  addMarkers(lng = -72.678154, lat = 42.450776, data = macleish_layers,
-             popup = "Group Camp") %>% 
-  addMarkers(lng = -72.674732, lat = 42.458570, data = macleish_layers,
-             popup = "Remote Camp") 
+  addPolylines(data=contour, color="black", weight=0.5) 
 
 m
 
