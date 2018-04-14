@@ -1,6 +1,6 @@
 ---
 title: "Mini-Project 3, Problem 3"
-author: "Christine Chu"
+author: "Christine Chu, Dardalie Brooks, Emily Grote"
 date: "Due April 15, 2018"
 output: 
   html_document:
