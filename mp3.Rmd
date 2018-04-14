@@ -19,22 +19,19 @@ library(raster)
 
 ```
 
+### Title: Camp Flat - Fix your rocky relationships
 
 ### Problem Statement: 
-Camping is a great way to build relationships between Smithies, whether it be in a house community or in a friend group. Currently there are only two campsites, that offer opportunities to interact with wilderness and the environment. But what if there were more campsites with totally different forest features and wildlife for Smithies to stay overnight at? We think that an additional two campsites that are relatively accessible by foot would make a great contribution to the Smith outdoor experience. 
+Camping is a great way to build relationships between Smithies, whether it be in a house community or in a friend group. Currently there are only two campsites at Macleish, that offer opportunities to interact with wilderness and the environment. But what if there were more campsites with totally different forest features and wildlife for Smithies to stay overnight at? We think that an additional two campsites that are relatively accessible by foot would make a great contribution to the Smith outdoor experience. 
+
+Description of the data: 
+The macleish package includes information about weather, sap collection, spatial data, and elevation information about Macleish.  The data we worked with most frequently to inform our decisions about camp site placement was the spatial data provided in the Macleish package.  
+Spatial data was composed of 14 different layers that provided information about the foliation, elevation, streams, buildings, challenge courses, and more.   
 
 
-### Parameters of an Excellent Campsite unlike the rest:
+### A Basic Map of Macleish:
 
-* Must be on relativly flat ground
-* Needed to be within .5 miles of the Macleish Parking Lot 
-* Must exist within 200 feet of a water source 
-* Could not exist within 500 feet of a research area or challenge course
-* The camp site must exist in a different vegitation setting than the current campsites 
-
-
-
-Production of a Basic Map of Macleish 
+This map shows_____.
 ```{r}
 forest_pal <- colorFactor("Set1",macleish_layers[["forests"]]$Sheet1__Na)
 
@@ -60,16 +57,13 @@ base_plot
 ```
 
    
-within 200’ of a stream or other source of water
+### Getting to the final plot
 
-
-For conversion reference? 
+After looking at the plots that were generated with leaflet, we primarily searched for locations that had the contour lines with the largest distances.  Camping on a hill is difficult, and if done incorrectly can have adverse effects on a person’s health, so camping on a relatively flat area became a priority. The final plot included the intersections of the streams, research areas and the challenge courses. This made it easy for us to choose along the intersections of where each of these layers met instead of manually searching for locations that fit our campsite requirements. Our proposed campsites focused on being accessible to Smithies or community members by walking, while keeping in mind the interaction with nature. The finial forest types provides us with a comfortable tree canopy suited for leisure campouts, that would be easily accessible by the individuals creating/clearing/building the site.  
 ```{r}
 proj4_aea <- "+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs"
 ```
 
-
-at least 500’ from any research area or any element of the Challenge Course.
 ```{r}
 #plotting the research buffers 
 
@@ -84,7 +78,7 @@ leaflet() %>%
 ```
 
 
-Creation of Buffers
+#### Creation of Buffers
 ```{r}
 challenge_buffer <- macleish_layers[["challenge_courses"]] %>%
   st_transform(proj4_aea) %>%
@@ -103,7 +97,7 @@ stream_buffer <- macleish_layers[["streams"]] %>%
 ```
  
 
-Working on making intersections for polygons 
+#### Intersections for polygons 
 ```{r}
 stream_without_research_intersect <- stream_buffer %>%
   st_difference(research_buffer)
@@ -120,6 +114,8 @@ base_plot %>%
 
 ```
 
+
+#### Creation of Tent Marker 
 ```{r}
 tent_marker <- makeIcon(
   iconUrl = "https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Summer-Vacation-PNG/Green_Tent_PNG_Clipart_Picture.png?m=1507172108",
@@ -127,8 +123,9 @@ tent_marker <- makeIcon(
   iconAnchorX = 0, iconAnchorY = 0)
 ```
 
+###Final Plot
 
-#####Final Plot
+
 ```{r}
 
 contour <- macleish_layers[["contours_3m"]]
@@ -166,25 +163,29 @@ m
 
 
 ```
+### In the Red Oak- Hemlock Forest:
+
+A major joy of the outdoors is closer interaction the local flora and fauna. The wide variety of flora in  Red Oak-Hemlock forests provides visual delights in addition to being a good teaching tool for first exposure to different local plant species. Some species include mature  American beech, Black Cherry and  Red Maple trees, among others. The shrub layer include witch-hazel, a plant used to produce an astringent liquid for skincare. Blueberry and Huckleberry bushes are also  in the area for snacking.
+	The flora of the campsites in the Red Oak-Hemlock forest  provide a rich habitat for a great diversity of fauna. For  birdwatchers, neotropical birds, like Warblers, Eastern Wood-Pewee’s and Great Crested Flycatchers, are more likely to be found in this forest type.  Furry sights are also sure to make an appearance. Smoky shrews, woodland jumping mice, grey and red squirrels, among other mammals, call Red-Oak Hemlock forests home. Campers should make sure to check near tree cavities, which many bird and mammal species call home. Campers on the site closer to the reservoir is sure to encounter some amphibians too. These include northern Redback Salamanders, red efts and Juvenile red -spotted Newts [^1].
+ 	Red-Oak Hemlock forests have unfortunately been exposed to invasive species. The gypsy moth is one such species that has proliferated in this forest type. Native to Northern Europe and Asia, the gypsy moth was introduced to Massachusetts in the mid-19th century. Their presences, though disruptive, allows for a learning opportunities for naturalists. Campers in the Red-Oak Hemlock sites can search for signs of the moths disruption like defoliated trees and areas with high tree mortality ( as the final effect of heavy defoliation) [^2]. 
 
 
-Next Steps:
+### Conclusion: One actionable recommendation 
 
-Write Description of Plot and why we chose what we did.............
-
-1. Import data for land flatness ___ pick something flat
-2. doesn't have same tree type as other campsites
-
-
-
+In order to propose two new campsites, there are a few criterias that we have to follow: 
+Proximity to a water source
+Safe from hazardous environment like rock falls or flash floods. 
+Fairly level and dry camping grounds. 
+We recommend these two locations based on functionality and the diverse flora and fauna located in each of these campsites. The most important thing for a successful campsite is the location of the permanent setup. Before construction of the site, a throughout site analysis is required to minimize the costs of future renovations to the site. We aim for these locations to be quiet and peaceful so campers will be able to fully indulge in nature’s music.  It is currently unclear how much the project will cost because of the variable expense of tree removal in the united states[^3].  There will be minimum setup required for these campsites, as they will be cleared and relatively flat land. These spaces will be big enough for a few small tents for campers to engage with one another and bond over nature. 
 
 
 
 
 
-
-
-
+[^1]: [Link to Source](https://www.mass.gov/files/documents/2016/08/np/oak-hemlock-white-pine-forest.pdf)
+[^2]: [Link to Source](https://www.fs.fed.us/ne/morgantown/4557/gmoth/)
+[^3]: [Link to Source](https://www.homeadvisor.com/cost/lawn-and-garden/tree-removal/?c_id=256291605020&entry_point_id=32705212&dev_id=c&iv_=__iv_p_1_a_906451821_g_50720645732_w_dsa-301726244544_h_9001667_ii__d_c_v__n_g_c_256291605020_k__m_b_l__t__e__r_1t2_vi__&entry_point_id=32705212&gclid=Cj0KCQjwzcbWBRDmARIsAM6uChU_e5mU6nJQc3jysI2B0yGYD23EkQGd-YoDhgewgb9sReO3WDuAbRYaAq4wEALw_wcB)
+[^4] [Link to our GitHub Repositoury](https://github.com/christine-chu/mp3-sds)
 
 
 
