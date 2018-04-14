@@ -31,7 +31,8 @@ Spatial data was composed of 14 different layers that provided information about
 
 ### A Basic Map of Macleish:
 
-This map shows_____.
+This map shows the current conditions plotting the buildings, streams, trails, challenge course, forests, existing campsites, and research areas.
+
 ```{r message= FALSE, warning= FALSE}
 forest_pal <- colorFactor("Set1",macleish_layers[["forests"]]$Sheet1__Na)
 
@@ -60,12 +61,13 @@ base_plot
 ### Getting to the final plot
 
 After looking at the plots that were generated with leaflet, we primarily searched for locations that had the contour lines with the largest distances.  Camping on a hill is difficult, and if done incorrectly can have adverse effects on a person’s health, so camping on a relatively flat area became a priority. The final plot included the intersections of the streams, research areas and the challenge courses. This made it easy for us to choose along the intersections of where each of these layers met instead of manually searching for locations that fit our campsite requirements. Our proposed campsites focused on being accessible to Smithies or community members by walking, while keeping in mind the interaction with nature. The finial forest types provides us with a comfortable tree canopy suited for leisure campouts, that would be easily accessible by the individuals creating/clearing/building the site.  
+
 ```{r message= FALSE, warning= FALSE}
 proj4_aea <- "+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs"
 ```
 
 #### Creation of Buffers
-```{r}
+```{r message= FALSE, warning= FALSE}
 challenge_buffer <- macleish_layers[["challenge_courses"]] %>%
   st_transform(proj4_aea) %>%
   st_buffer(dist= 152) %>%
@@ -94,7 +96,7 @@ leaflet() %>%
 ``` 
 
 #### Intersections for polygons 
-```{r}
+```{r  message= FALSE, warning= FALSE}
 stream_without_research_intersect <- stream_buffer %>%
   st_difference(research_buffer)
 
@@ -122,7 +124,7 @@ tent_marker <- makeIcon(
 ###Final Plot
 
 
-```{r}
+```{r  message= FALSE, warning= FALSE}
 leaflet() %>% 
   addTiles() %>%
   addPolygons(data = macleish_layers[["buildings"]]) %>%
@@ -156,7 +158,7 @@ The flora of the campsites in the Red Oak-Hemlock forest  provide a rich habitat
 Red-Oak Hemlock forests have unfortunately been exposed to invasive species. The gypsy moth is one such species that has proliferated in this forest type. Native to Northern Europe and Asia, the gypsy moth was introduced to Massachusetts in the mid-19th century. Their presences, though disruptive, allows for a learning opportunities for naturalists. Campers in the Red-Oak Hemlock sites can search for signs of the moths disruption like defoliated trees and areas with high tree mortality ( as the final effect of heavy defoliation) [^2]. 
 
 
-### Conclusion: One actionable recommendation 
+## Conclusion: One actionable recommendation 
 
 In order to propose two new campsites, there are a few criterias that we have to follow: 
 
