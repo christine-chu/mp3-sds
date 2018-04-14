@@ -64,20 +64,6 @@ After looking at the plots that were generated with leaflet, we primarily search
 proj4_aea <- "+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs"
 ```
 
-```{r}
-#plotting the research buffers 
-
-leaflet() %>%
-  addTiles() %>%
-  addPolylines(data=macleish_layers[["streams"]], weight=1, color="black") %>%
-  addPolygons(data = stream_buffer) %>%
-  addPolygons(data=macleish_layers[["research"]], weight=1, color="red") %>%
-  addPolygons(data = research_buffer) %>% 
-  addCircleMarkers(data=macleish_layers[["challenge_courses"]], weight=1, color="black") %>% 
-  addPolygons(data = challenge_buffer)
-```
-
-
 #### Creation of Buffers
 ```{r}
 challenge_buffer <- macleish_layers[["challenge_courses"]] %>%
@@ -95,7 +81,17 @@ stream_buffer <- macleish_layers[["streams"]] %>%
   st_buffer(dist=10) %>%
   st_transform(4326)
 ```
- 
+
+```{r}
+leaflet() %>%
+  addTiles() %>%
+  addPolylines(data=macleish_layers[["streams"]], weight=1, color="black") %>%
+  addPolygons(data = stream_buffer) %>%
+  addPolygons(data=macleish_layers[["research"]], weight=1, color="red") %>%
+  addPolygons(data = research_buffer) %>% 
+  addCircleMarkers(data=macleish_layers[["challenge_courses"]], weight=1, color="black") %>% 
+  addPolygons(data = challenge_buffer)
+``` 
 
 #### Intersections for polygons 
 ```{r}
@@ -130,7 +126,7 @@ tent_marker <- makeIcon(
 
 contour <- macleish_layers[["contours_3m"]]
 
-m <- leaflet() %>% 
+leaflet() %>% 
   addTiles() %>%
   addPolygons(data = macleish_layers[["buildings"]]) %>%
   addPolylines(data = macleish_layers[["streams"]], weight =1, color="Blue") %>%
@@ -157,11 +153,6 @@ addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", wei
     title = "Forest Types",
     opacity = 1
   )
-
-m
-
-
-
 ```
 ### In the Red Oak- Hemlock Forest:
 
