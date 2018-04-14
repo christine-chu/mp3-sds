@@ -140,8 +140,9 @@ addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", wei
              popup = "Group Camp", icon = tent_marker) %>%
   addMarkers(lng = -72.67965, lat = 42.450130, data = macleish_layers,  #### Unique option 1
              popup = "Aquatic campsite", icon = tent_marker) %>% 
-  addMarkers(lng = -72.6744, lat = 42.447900, data = macleish_layers, #### unique option 2
-             popup = "Wildlife campsite", icon = tent_marker) %>%
+   addMarkers(lng = -72.68325, lat = 42.454100, data = macleish_layers, #### unique option 2
+             popup = "Hemlock campsite", icon = tent_marker) %>%
+
   addPolygons(data=stream_without_research_intersect) %>% 
    addCircles(lng = -72.68068, lat = 42.448, data=macleish_layers, color="Green", weight=.5, radius=804) %>%  
   addPolylines(data=macleish_layers[["contours_3m"]], color="black", weight=0.5) 
