@@ -1,5 +1,5 @@
 ---
-title: "Mini-Project 3, Problem 3"
+title: "Camp Flat - Fix your rocky relationships"
 author: "Christine Chu, Dardalie Brooks, Emily Grote"
 date: "Due April 15, 2018"
 output: 
@@ -18,8 +18,6 @@ library(lwgeom)
 library(raster) 
 
 ```
-
-### Title: Camp Flat - Fix your rocky relationships
 
 ### Problem Statement: 
 Camping is a great way to build relationships between Smithies, whether it be in a house community or in a friend group. Currently there are only two campsites at Macleish, that offer opportunities to interact with wilderness and the environment. But what if there were more campsites with totally different forest features and wildlife for Smithies to stay overnight at? We think that an additional two campsites that are relatively accessible by foot would make a great contribution to the Smith outdoor experience. 
