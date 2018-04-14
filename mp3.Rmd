@@ -123,9 +123,6 @@ tent_marker <- makeIcon(
 
 
 ```{r}
-
-contour <- macleish_layers[["contours_3m"]]
-
 leaflet() %>% 
   addTiles() %>%
   addPolygons(data = macleish_layers[["buildings"]]) %>%
@@ -147,13 +144,14 @@ addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", wei
              popup = "Wildlife campsite", icon = tent_marker) %>%
   addPolygons(data=stream_without_research_intersect) %>% 
    addCircles(lng = -72.68068, lat = 42.448, data=macleish_layers, color="Green", weight=.5, radius=804) %>%  
-  addPolylines(data=contour, color="black", weight=0.5) %>%
+  addPolylines(data=macleish_layers[["contours_3m"]], color="black", weight=0.5) %>%
   
     addLegend("bottomright", pal = forest_pal, values = ~Sheet1__Na,
     title = "Forest Types",
     opacity = 1
   )
 ```
+
 ### In the Red Oak- Hemlock Forest:
 
 A major joy of the outdoors is closer interaction the local flora and fauna. The wide variety of flora in  Red Oak-Hemlock forests provides visual delights in addition to being a good teaching tool for first exposure to different local plant species. Some species include mature  American beech, Black Cherry and  Red Maple trees, among others. The shrub layer include witch-hazel, a plant used to produce an astringent liquid for skincare. Blueberry and Huckleberry bushes are also  in the area for snacking.
