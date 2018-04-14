@@ -1,6 +1,6 @@
 ---
 title: "Mini-Project 3, Problem 3"
-author: "Dardalie Brooks, Christine Chu, Emily Grote"
+author: "Christine Chu"
 date: "Due April 15, 2018"
 output: 
   html_document:
@@ -56,7 +56,7 @@ base_plot <- leaflet() %>%
 base_plot 
 ```
 
-   
+
 ### Getting to the final plot
 
 After looking at the plots that were generated with leaflet, we primarily searched for locations that had the contour lines with the largest distances.  Camping on a hill is difficult, and if done incorrectly can have adverse effects on a person’s health, so camping on a relatively flat area became a priority. The final plot included the intersections of the streams, research areas and the challenge courses. This made it easy for us to choose along the intersections of where each of these layers met instead of manually searching for locations that fit our campsite requirements. Our proposed campsites focused on being accessible to Smithies or community members by walking, while keeping in mind the interaction with nature. The finial forest types provides us with a comfortable tree canopy suited for leisure campouts, that would be easily accessible by the individuals creating/clearing/building the site.  
@@ -128,7 +128,7 @@ leaflet() %>%
   addPolygons(data = macleish_layers[["buildings"]]) %>%
   addPolylines(data = macleish_layers[["streams"]], weight =1, color="Blue") %>%
   addPolylines(data = macleish_layers[["trails"]], weight =1, color="Brown") %>%
-addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", weight=.1) %>%
+  addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", weight=.1) %>%
   addPolygons(data = macleish_layers[["research"]]) %>%
   addPolygons(data = macleish_layers[["forests"]], 
               color = ~forest_pal(Sheet1__Na), weight = 0.1, 
@@ -136,42 +136,44 @@ addCircleMarkers(data=macleish_layers[["challenge_courses"]], color="Green", wei
               popup = ~ Sheet1__Na, group = "Natural") %>%
   addMarkers(lng = -72.674732, lat = 42.458570, data = macleish_layers,
              popup = "Remote Camp", icon = tent_marker) %>% 
-   addMarkers(lng = -72.678154, lat = 42.450976, data = macleish_layers,
+  addMarkers(lng = -72.678154, lat = 42.450976, data = macleish_layers,
              popup = "Group Camp", icon = tent_marker) %>%
   addMarkers(lng = -72.67965, lat = 42.450130, data = macleish_layers,  #### Unique option 1
              popup = "Aquatic campsite", icon = tent_marker) %>% 
-   addMarkers(lng = -72.68325, lat = 42.454100, data = macleish_layers, #### unique option 2
+  addMarkers(lng = -72.68325, lat = 42.454100, data = macleish_layers, #### unique option 2
              popup = "Hemlock campsite", icon = tent_marker) %>%
-
-  addPolygons(data=stream_without_research_intersect) %>% 
-   addCircles(lng = -72.68068, lat = 42.448, data=macleish_layers, color="Green", weight=.5, radius=804) %>%  
-  addPolylines(data=macleish_layers[["contours_3m"]], color="black", weight=0.5) 
   
+  addPolygons(data=stream_without_research_intersect) %>% 
+  addCircles(lng = -72.68068, lat = 42.448, data=macleish_layers, color="Green", weight=.5, radius=804) %>%  
+  addPolylines(data=macleish_layers[["contours_3m"]], color="black", weight=0.5) 
+
 ```
 
 ### In the Red Oak- Hemlock Forest:
 
 A major joy of the outdoors is closer interaction the local flora and fauna. The wide variety of flora in  Red Oak-Hemlock forests provides visual delights in addition to being a good teaching tool for first exposure to different local plant species. Some species include mature  American beech, Black Cherry and  Red Maple trees, among others. The shrub layer include witch-hazel, a plant used to produce an astringent liquid for skincare. Blueberry and Huckleberry bushes are also  in the area for snacking.
-	The flora of the campsites in the Red Oak-Hemlock forest  provide a rich habitat for a great diversity of fauna. For  birdwatchers, neotropical birds, like Warblers, Eastern Wood-Pewee’s and Great Crested Flycatchers, are more likely to be found in this forest type.  Furry sights are also sure to make an appearance. Smoky shrews, woodland jumping mice, grey and red squirrels, among other mammals, call Red-Oak Hemlock forests home. Campers should make sure to check near tree cavities, which many bird and mammal species call home. Campers on the site closer to the reservoir is sure to encounter some amphibians too. These include northern Redback Salamanders, red efts and Juvenile red -spotted Newts [^1].
- 	Red-Oak Hemlock forests have unfortunately been exposed to invasive species. The gypsy moth is one such species that has proliferated in this forest type. Native to Northern Europe and Asia, the gypsy moth was introduced to Massachusetts in the mid-19th century. Their presences, though disruptive, allows for a learning opportunities for naturalists. Campers in the Red-Oak Hemlock sites can search for signs of the moths disruption like defoliated trees and areas with high tree mortality ( as the final effect of heavy defoliation) [^2]. 
+The flora of the campsites in the Red Oak-Hemlock forest  provide a rich habitat for a great diversity of fauna. For  birdwatchers, neotropical birds, like Warblers, Eastern Wood-Pewee’s and Great Crested Flycatchers, are more likely to be found in this forest type.  Furry sights are also sure to make an appearance. Smoky shrews, woodland jumping mice, grey and red squirrels, among other mammals, call Red-Oak Hemlock forests home. Campers should make sure to check near tree cavities, which many bird and mammal species call home. Campers on the site closer to the reservoir is sure to encounter some amphibians too. These include northern Redback Salamanders, red efts and Juvenile red -spotted Newts [^1].
+Red-Oak Hemlock forests have unfortunately been exposed to invasive species. The gypsy moth is one such species that has proliferated in this forest type. Native to Northern Europe and Asia, the gypsy moth was introduced to Massachusetts in the mid-19th century. Their presences, though disruptive, allows for a learning opportunities for naturalists. Campers in the Red-Oak Hemlock sites can search for signs of the moths disruption like defoliated trees and areas with high tree mortality ( as the final effect of heavy defoliation) [^2]. 
 
 
 ### Conclusion: One actionable recommendation 
 
 In order to propose two new campsites, there are a few criterias that we have to follow: 
-Proximity to a water source
-Safe from hazardous environment like rock falls or flash floods. 
-Fairly level and dry camping grounds. 
+
+* Proximity to a water source
+* Safe from hazardous environment like rock falls or flash floods. 
+* Fairly level and dry camping grounds. 
+
 We recommend these two locations based on functionality and the diverse flora and fauna located in each of these campsites. The most important thing for a successful campsite is the location of the permanent setup. Before construction of the site, a throughout site analysis is required to minimize the costs of future renovations to the site. We aim for these locations to be quiet and peaceful so campers will be able to fully indulge in nature’s music.  It is currently unclear how much the project will cost because of the variable expense of tree removal in the united states[^3].  There will be minimum setup required for these campsites, as they will be cleared and relatively flat land. These spaces will be big enough for a few small tents for campers to engage with one another and bond over nature. 
 
 
-
+This project would not have been possible without github [^4].
 
 
 [^1]: [Link to Source](https://www.mass.gov/files/documents/2016/08/np/oak-hemlock-white-pine-forest.pdf)
 [^2]: [Link to Source](https://www.fs.fed.us/ne/morgantown/4557/gmoth/)
 [^3]: [Link to Source](https://www.homeadvisor.com/cost/lawn-and-garden/tree-removal/?c_id=256291605020&entry_point_id=32705212&dev_id=c&iv_=__iv_p_1_a_906451821_g_50720645732_w_dsa-301726244544_h_9001667_ii__d_c_v__n_g_c_256291605020_k__m_b_l__t__e__r_1t2_vi__&entry_point_id=32705212&gclid=Cj0KCQjwzcbWBRDmARIsAM6uChU_e5mU6nJQc3jysI2B0yGYD23EkQGd-YoDhgewgb9sReO3WDuAbRYaAq4wEALw_wcB)
-[^4] [Link to our GitHub Repositoury](https://github.com/christine-chu/mp3-sds)
+[^4]: [Link to our GitHub Repositoury](https://github.com/christine-chu/mp3-sds)
 
 
 
